@@ -8,7 +8,7 @@
 // This will help you keep all product page actions together.
 import { expect, type Locator, type Page } from '@playwright/test';
 
-class ProductsPage {
+export class ProductsPage {
     constructor(private page: Page) {}
 
     async addProductToCart(index: number) {
