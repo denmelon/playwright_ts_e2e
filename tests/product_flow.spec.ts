@@ -1,4 +1,21 @@
 import { test, expect } from '@playwright/test';
+// HOW TO USE PAGE OBJECT CLASSES IN YOUR TESTS:
+// 1. Import the page object classes at the top:
+//    import { ProductsPage } from './pages/products';
+//    import { CartPage } from './pages/cart';
+//    import { CheckoutPage } from './pages/checkout';
+//    import { ContactPage } from './pages/contact';
+// 2. In each test, create an instance for each page:
+//    const productsPage = new ProductsPage(page);
+//    const cartPage = new CartPage(page);
+//    ...etc.
+// 3. Replace old function calls with class method calls:
+//    await productsPage.addProductToCart(1);
+//    await cartPage.assertProduct(productName);
+//    await cartPage.getSubTotal();
+//    ...etc.
+// 4. If you need a new action, add a method to the relevant class.
+// 5. This makes your tests easier to read and maintain.
 import { CartPage } from './pages/cart';
 import { ProductsPage } from './pages/products';
 import { CheckoutPage, testValues } from './pages/checkout';

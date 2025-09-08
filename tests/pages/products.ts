@@ -2,6 +2,16 @@
 // Example:
 // class ProductsPage {
 //   constructor(private page: Page) {}
+// HOW TO USE THIS FILE:
+// 1. Import ProductsPage in your test file:
+//    import { ProductsPage } from './pages/products';
+// 2. Create an instance in your test:
+//    const productsPage = new ProductsPage(page);
+// 3. Call methods like:
+//    await productsPage.addProductToCart(1);
+// 4. You can add more methods to this class for other actions on the products page.
+//    For example: getProductName(index), getProductPrice(index), etc.
+// 5. If you need to check something on the products page, add a new method to this class.
 //   async addProductToCart(index: number) { ... }
 // }
 // Move the function below into a method of the ProductsPage class.
