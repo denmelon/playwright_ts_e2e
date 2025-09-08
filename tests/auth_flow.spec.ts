@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
 import { EmailUtils } from './utils/emailUtils';
 import 'dotenv/config';
-import * as signUpPage from './pages/signUp';
-import * as loginPage from './pages/login';
+import { SignUpPage, signUpData } from './pages/signUp';
+import { LoginPage } from './pages/login';
 import { join, resolve } from 'path';
 import { writeFileSync, existsSync, mkdirSync, write } from 'fs';
 
@@ -17,7 +17,9 @@ test('Sign up', async ({page}) => {
 
     await page.goto('/signup');
 
-    await signUpPage.signUp(page, inbox.emailAddress);
+    const signUpPage = new SignUpPage(page);
+    await signUpPage.signUp(inbox.emailAddress);
+        await signUpPage.completeSignUp();
 
     const email = await emailUtils.waitForLatesEmail(inbox.id);
     console.log(email);
@@ -26,17 +28,17 @@ test('Sign up', async ({page}) => {
     const code = /([0-9]{6})$/.exec(email.body!)![1];
     console.log(`Verification code: ${code}`);
 
-    await signUpPage.addConfirmationCode(page, code);
+        await signUpPage.addConfirmationCode(code);
 
-    await loginPage.login(page, inbox.emailAddress, signUpPage.signUpData.pass);
-
-    await loginPage.verifySuccessfulLogin(page);
+        const loginPage = new LoginPage(page);
+        await loginPage.login(inbox.emailAddress, signUpData.pass);
+        await loginPage.verifySuccessfulLogin();
 
     // persist login data:
-    const loginData = {
-        email: inbox.emailAddress,
-        pass: signUpPage.signUpData.pass
-    }
+        const loginData = {
+            email: inbox.emailAddress,
+            pass: signUpData.pass
+        }
     const authDir = resolve (__dirname, '../playwright/.auth');
     if (!existsSync(authDir)) {
         mkdirSync(authDir, { recursive: true });
