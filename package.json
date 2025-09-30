@@ -13,6 +13,7 @@
     "@types/node": "^24.3.0"
   },
   "dependencies": {
+    "axe-playwright": "^2.2.2",
     "dotenv": "^17.2.1",
     "mailslurp-client": "^16.0.0"
   }

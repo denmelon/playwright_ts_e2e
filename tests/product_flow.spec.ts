@@ -1,3 +1,21 @@
+// EXAMPLE: How to use OrderBuilder in a UI test
+// import { OrderBuilder } from './builders/orderBuilder';
+// ...inside your test...
+// const builder = new OrderBuilder();
+// builder.setCustomerDetails({
+//   firstName: 'John',
+//   lastName: 'Doe',
+//   email: 'john.doe@example.com',
+//   address: '123 Main St',
+//   city: 'Anytown',
+//   zipCode: '12345',
+//   country: 'United States'
+// });
+// builder.addItem({ productId: '504', quantity: 1 });
+// const orderData = builder.build();
+// // You can now use orderData in your test, e.g. send it to an API or fill a form
+// // Example: await page.fill('[data-test-id="checkout-firstname-input"]', orderData.customerDetails.firstName);
+// // ...existing code...
 import { test, expect } from '@playwright/test';
 // HOW TO USE PAGE OBJECT CLASSES IN YOUR TESTS:
 // 1. Import the page object classes at the top:
